@@ -36,8 +36,17 @@ Run the South migrations::
 Usage
 -----
 
-TODO: Add usage
+In order to render a subscribe/unsubscribe button next to an object, do this::
 
+    {% load i18n subscriptions_tags %}
+    {% get_subscribers object as subscribers %}
+    {% get_ctype object as ctype %}
+    {% is_subscribed user object as user_is_subscribed %}
+    {% if user_is_subscribed %}
+        <p><a href="{% url "subscriptions_delete" ctype_pk=ctype.pk object_pk=object.pk %}">{% trans "Un-subscribe" %}</a></p>
+    {% else %}
+        <p><a href="{% url "subscriptions_create" ctype_pk=ctype.pk object_pk=object.pk %}">{% trans "Subscribe" %}</a></p>
+    {% endif %}
 
 Roadmap
 -------
