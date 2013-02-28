@@ -1,4 +1,6 @@
 === ongoing ===
+ 
+ - Fixed wrong template folder name
 
 === 0.1 ===
 
