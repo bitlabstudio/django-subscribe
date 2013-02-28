@@ -1,5 +1,8 @@
 === ongoing ===
 
+- Fixed some wrong paths and names.
+- Fixed migrations.
+
 === 0.1.1 ===
  
  - Fixed wrong template folder name

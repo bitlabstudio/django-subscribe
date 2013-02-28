@@ -10,12 +10,12 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding unique constraint on 'Subscription', fields ['user', 'content_type', 'object_id']
-        db.create_unique(u'subscriptions_subscription', ['user_id', 'content_type_id', 'object_id'])
+        db.create_unique(u'subscribe_subscription', ['user_id', 'content_type_id', 'object_id'])
 
 
     def backwards(self, orm):
         # Removing unique constraint on 'Subscription', fields ['user', 'content_type', 'object_id']
-        db.delete_unique(u'subscriptions_subscription', ['user_id', 'content_type_id', 'object_id'])
+        db.delete_unique(u'subscribe_subscription', ['user_id', 'content_type_id', 'object_id'])
 
 
     models = {
@@ -55,7 +55,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'subscriptions.subscription': {
+        u'subscribe.subscription': {
             'Meta': {'unique_together': "(('user', 'content_type', 'object_id'),)", 'object_name': 'Subscription'},
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['contenttypes.ContentType']"}),
             'creation_date': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
@@ -65,4 +65,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['subscriptions']
+    complete_apps = ['subscribe']

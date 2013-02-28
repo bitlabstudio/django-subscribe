@@ -10,19 +10,19 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'Subscription'
-        db.create_table(u'subscriptions_subscription', (
+        db.create_table(u'subscribe_subscription', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
             ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')()),
             ('creation_date', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
-        db.send_create_signal(u'subscriptions', ['Subscription'])
+        db.send_create_signal(u'subscribe', ['Subscription'])
 
 
     def backwards(self, orm):
         # Deleting model 'Subscription'
-        db.delete_table(u'subscriptions_subscription')
+        db.delete_table(u'subscribe_subscription')
 
 
     models = {
@@ -62,7 +62,7 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'subscriptions.subscription': {
+        u'subscribe.subscription': {
             'Meta': {'object_name': 'Subscription'},
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['contenttypes.ContentType']"}),
             'creation_date': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
@@ -72,4 +72,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['subscriptions']
+    complete_apps = ['subscribe']
