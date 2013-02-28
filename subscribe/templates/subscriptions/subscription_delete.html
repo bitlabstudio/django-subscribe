@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block "main" %}
+<h1>{% trans "Un-subscribe" %}</h1>
+<form id="form" method="post" action=".">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="{% trans "Un-subscribe" %}" />
+</form>
+{% endblock %}

@@ -1,0 +1,9 @@
+include AUTHORS
+include LICENSE
+include DESCRIPTION
+include CHANGELOG.txt
+include README.md
+graft subscribe 
+global-exclude *.orig *.pyc *.log
+prune subscribe/tests/coverage/
+prune subscribe/.ropeproject/
