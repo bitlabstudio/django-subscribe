@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.1.2 ===
+
 - Fixed some wrong paths and names.
 - Fixed migrations.
 
