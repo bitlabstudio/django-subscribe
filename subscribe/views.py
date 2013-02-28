@@ -12,7 +12,7 @@ from .forms import SubscriptionCreateForm, SubscriptionDeleteForm
 class SubscriptionCreateView(FormView):
     """View that subscribes a ``User`` to any thing."""
     form_class = SubscriptionCreateForm
-    template_name = 'subscriptions/subscription_form.html'
+    template_name = 'subscribe/subscription_form.html'
     success_url = '/'
 
     @method_decorator(login_required)
@@ -56,4 +56,4 @@ class SubscriptionCreateView(FormView):
 class SubscriptionDeleteView(SubscriptionCreateView):
     """View that un-subscribes a ``User`` from any thing."""
     form_class = SubscriptionDeleteForm
-    template_name = 'subscriptions/subscription_delete.html'
+    template_name = 'subscribe/subscription_delete.html'

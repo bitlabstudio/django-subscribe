@@ -1,4 +1,4 @@
-"""Templatetags for the ``subscriptions`` app."""
+"""Templatetags for the ``subscribe`` app."""
 from django import template
 from django.contrib.contenttypes.models import ContentType
 

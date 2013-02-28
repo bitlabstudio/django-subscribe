@@ -38,7 +38,7 @@ Usage
 
 In order to render a subscribe/unsubscribe button next to an object, do this::
 
-    {% load i18n subscriptions_tags %}
+    {% load i18n subscribe_tags %}
     {% get_subscribers object as subscribers %}
     {% get_ctype object as ctype %}
     {% is_subscribed user object as user_is_subscribed %}

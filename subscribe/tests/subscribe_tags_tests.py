@@ -2,7 +2,7 @@
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
 
-from ..templatetags.subscriptions_tags import (
+from ..templatetags.subscribe_tags import (
     get_ctype,
     get_subscribers,
     is_subscribed,
