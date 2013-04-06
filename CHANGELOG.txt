@@ -1,5 +1,7 @@
 === ongoing ===
 
+- Added related_names to foreign keys.
+
 === 0.1.2 ===
 
 - Fixed some wrong paths and names.
