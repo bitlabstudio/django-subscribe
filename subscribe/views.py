@@ -13,7 +13,6 @@ class SubscriptionCreateView(FormView):
     """View that subscribes a ``User`` to any thing."""
     form_class = SubscriptionCreateForm
     template_name = 'subscribe/subscription_form.html'
-    success_url = '/'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -34,7 +33,7 @@ class SubscriptionCreateView(FormView):
             request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.save()
+        self.object = form.save()
         return super(SubscriptionCreateView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -51,6 +50,9 @@ class SubscriptionCreateView(FormView):
             'content_object': self.content_object,
         })
         return kwargs
+
+    def get_success_url(self):
+        return self.content_object.get_absolute_url()
 
 
 class SubscriptionDeleteView(SubscriptionCreateView):

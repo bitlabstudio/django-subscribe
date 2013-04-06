@@ -1,5 +1,8 @@
 === ongoing ===
 
+- redirecting to the content object's absolute url after subscribing /
+  unsubscribing
+
 === 0.1.3 ===
 
 - Added related_names to foreign keys.
