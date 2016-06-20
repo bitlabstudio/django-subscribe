@@ -1,9 +1,7 @@
-Django Subscribe 
+Django Subscribe
 ================
 
 A simple subscription app for Django.
-
-TODO: Add more info
 
 
 Installation

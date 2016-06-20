@@ -2,20 +2,19 @@
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
 
-from django_libs.tests.factories import UserFactory
-from django_libs.tests.mixins import ViewTestMixin
+from django_libs.tests.mixins import ViewRequestFactoryTestMixin
+from mixer.backend.django import mixer
 
-from ..factories import DummyModelFactory, SubscriptionFactory
+from .. import views
 
 
-class SubscriptionCreateViewTestCase(ViewTestMixin, TestCase):
+class SubscriptionCreateViewTestCase(ViewRequestFactoryTestMixin, TestCase):
+    view_class = views.SubscriptionCreateView
+
     def setUp(self):
-        self.user = UserFactory()
-        self.dummy = DummyModelFactory()
+        self.user = mixer.blend('auth.User')
+        self.dummy = mixer.blend('test_app.DummyModel')
         self.ctype = ContentType.objects.get_for_model(self.dummy)
-
-    def get_view_name(self):
-        return 'subscriptions_create'
 
     def get_view_kwargs(self):
         return {'ctype_pk': self.ctype.pk, 'object_pk': self.dummy.pk, }
@@ -26,17 +25,18 @@ class SubscriptionCreateViewTestCase(ViewTestMixin, TestCase):
 
     def test_callable(self):
         """Should be callable if user is authenticated."""
-        self.should_be_callable_when_authenticated(self.user)
+        self.is_callable(user=self.user)
 
 
-class SubscriptionDeleteViewTestCase(ViewTestMixin, TestCase):
+class SubscriptionDeleteViewTestCase(ViewRequestFactoryTestMixin, TestCase):
+    view_class = views.SubscriptionDeleteView
+
     def setUp(self):
-        self.subscription = SubscriptionFactory()
+        self.subscription = mixer.blend(
+            'subscribe.Subscription',
+            content_object=mixer.blend('test_app.DummyModel'))
         self.ctype = ContentType.objects.get_for_model(
             self.subscription.content_type)
-
-    def get_view_name(self):
-        return 'subscriptions_delete'
 
     def get_view_kwargs(self):
         return {
@@ -50,4 +50,5 @@ class SubscriptionDeleteViewTestCase(ViewTestMixin, TestCase):
 
     def test_callable(self):
         """Should be callable if user is authenticated."""
-        self.should_be_callable_when_authenticated(self.subscription.user)
+        self.is_callable(user=self.subscription.user)
+        self.is_postable(user=self.subscription.user, to='/')

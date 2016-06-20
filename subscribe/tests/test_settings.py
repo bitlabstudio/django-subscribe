@@ -2,8 +2,6 @@
 import os
 
 DEBUG = True
-FILER_DEBUG = True
-
 SITE_ID = 1
 
 DATABASES = {
@@ -27,17 +25,20 @@ STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), 'test_static'),
 )
 
-TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), '../templates'),
-)
-
-COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(
-    os.path.dirname(__file__), 'coverage')
-
-COVERAGE_MODULE_EXCLUDES = [
-    'tests$', 'settings$', 'urls$', 'locale$',
-    'migrations', 'fixtures', 'admin$', 'django_extensions',
-]
+TEMPLATES = [{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'APP_DIRS': True,
+    'DIRS': [os.path.join(os.path.dirname(__file__), '../templates')],
+    'OPTIONS': {
+        'context_processors': (
+            'django.contrib.auth.context_processors.auth',
+            'django.core.context_processors.i18n',
+            'django.core.context_processors.request',
+            'django.core.context_processors.media',
+            'django.core.context_processors.static',
+        )
+    }
+}]
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
@@ -46,14 +47,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-)
 
 EXTERNAL_APPS = [
     'django.contrib.admin',
@@ -65,7 +58,6 @@ EXTERNAL_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.sites',
-    'django_nose',
 ]
 
 INTERNAL_APPS = [
@@ -74,7 +66,5 @@ INTERNAL_APPS = [
 ]
 
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
-
-COVERAGE_MODULE_EXCLUDES += EXTERNAL_APPS
 
 SECRET_KEY = 'foobar'

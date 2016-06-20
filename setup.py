@@ -23,13 +23,7 @@ setup(
     url="https://github.com/bitmazk/django-subscribe",
     packages=find_packages(),
     include_package_data=True,
-    tests_require=[
-        'fabric',
-        'factory_boy',
-        'django-nose',
-        'coverage',
-        'django-coverage',
-        'mock',
+    install_requires=[
+        'django',
     ],
-    test_suite='subscribe.tests.runtests.runtests',
 )

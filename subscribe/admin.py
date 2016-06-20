@@ -1,7 +1,7 @@
 """Admin classes for the ``subscribe`` app."""
 from django.contrib import admin
 
-from .models import Subscription
+from . import models
 
 
-admin.site.register(Subscription)
+admin.site.register(models.Subscription)

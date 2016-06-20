@@ -1,11 +1,10 @@
 """Tests for the forms of the ``subscriptions`` app."""
 from django.test import TestCase
 
-from django_libs.tests.factories import UserFactory
+from mixer.backend.django import mixer
 
 from ..forms import SubscriptionCreateForm, SubscriptionDeleteForm
 from ..models import Subscription
-from .factories import DummyModelFactory, SubscriptionFactory
 
 
 class SubscriptionCreateFormTestCase(TestCase):
@@ -14,8 +13,8 @@ class SubscriptionCreateFormTestCase(TestCase):
 
     def test_save(self):
         """Should create a new subscription."""
-        user = UserFactory()
-        dummy = DummyModelFactory()
+        user = mixer.blend('auth.User')
+        dummy = mixer.blend('test_app.DummyModel')
         form = SubscriptionCreateForm(user=user, content_object=dummy, data={})
         self.assertTrue(form.is_valid(), msg=(
             'Errors: {0}'.format(form.errors.items())))
@@ -29,7 +28,8 @@ class SubscriptionDeleteFormTestCase(TestCase):
 
     def test_save(self):
         """Should delete the subscription."""
-        sub = SubscriptionFactory()
+        sub = mixer.blend('subscribe.Subscription',
+                          content_object=mixer.blend('test_app.DummyModel'))
         form = SubscriptionDeleteForm(
             user=sub.user, content_object=sub.content_object, data={})
         self.assertTrue(form.is_valid(), msg=(
@@ -42,7 +42,8 @@ class SubscriptionDeleteFormTestCase(TestCase):
         Should fail graciously if trying to delete a non existant subscription.
 
         """
-        sub = SubscriptionFactory()
+        sub = mixer.blend('subscribe.Subscription',
+                          content_object=mixer.blend('test_app.DummyModel'))
         form = SubscriptionDeleteForm(
             user=sub.user, content_object=sub.content_object, data={})
         self.assertTrue(form.is_valid(), msg=(

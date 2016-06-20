@@ -1,5 +1,10 @@
 === ongoing ===
 
+=== 0.1.5 ===
+
+- Added new migrations
+- Prepared app for Django 1.9 and Python 3.5
+
 === 0.1.4 ===
 
 - redirecting to the content object's absolute url after subscribing /
@@ -15,7 +20,7 @@
 - Fixed migrations.
 
 === 0.1.1 ===
- 
+
  - Fixed wrong template folder name
 
 === 0.1 ===

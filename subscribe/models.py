@@ -2,9 +2,11 @@
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 
+@python_2_unicode_compatible
 class Subscription(models.Model):
     """
     Allows a ``User`` to subscribe to anything.
@@ -36,6 +38,6 @@ class Subscription(models.Model):
         verbose_name=_('Creation date'),
     )
 
-    def __unicode__(self):
-        return '{0} subscribed to {1}'.format(
+    def __str__(self):
+        return u'{0} subscribed to {1}'.format(
             self.user.email, self.content_object)
