@@ -13,8 +13,6 @@ from django.conf.urls.static import static
 
 from django.contrib.auth import views as auth_views
 
-url(r'^accounts/login/$', auth_views.login),
-
 admin.autodiscover()
 
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
