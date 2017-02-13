@@ -46,21 +46,18 @@ In order to render a subscribe/unsubscribe button next to an object, do this::
         <p><a href="{% url "subscriptions_create" ctype_pk=ctype.pk object_pk=object.pk %}">{% trans "Subscribe" %}</a></p>
     {% endif %}
 
-Roadmap
--------
-
-Check the issue tracker on github for milestones and features to come.
-
-
 Test
 ----
 
 For a test run
+    $ python manage.py check
+    $ python manage.py migrate
+    $ python manage.py createsuperuser
+    $ python manage.py runserver 0:8000
+and check it out at http://localhost:8000/admin
 
-    python manage.py check
-    python manage.py migrate
-    python manage.py createsuperuser
-    python manage.py runserver 0:8000
 
-and check it at http://localhost:8000/admin
+Roadmap
+-------
 
+Check the issue tracker on github for milestones and features to come.
