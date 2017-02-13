@@ -50,3 +50,17 @@ Roadmap
 -------
 
 Check the issue tracker on github for milestones and features to come.
+
+
+Test
+----
+
+For a test run
+
+    python manage.py check
+    python manage.py migrate
+    python manage.py createsuperuser
+    python manage.py runserver 0:8000
+
+and check it at http://localhost:8000/admin
+
