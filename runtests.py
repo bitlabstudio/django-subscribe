@@ -12,7 +12,7 @@ from fabric.colors import green, red
 
 if __name__ == '__main__':
     local('flake8 --ignore=E126 --ignore=W391 --statistics'
-          ' --exclude=submodules,migrations,south_migrations,build .')
+          ' --exclude=submodules,migrations,south_migrations,build,.tox .')
     local('coverage run --source="subscribe" manage.py test -v 2'
           ' --traceback --failfast --settings=subscribe.tests.settings'
           ' --pattern="*_tests.py"')
